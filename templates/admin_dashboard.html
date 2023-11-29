@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Admin Dashboard</title>
+    <link rel="stylesheet" href="/static/css/styles.css">
+</head>
+<body>
+    <div class="container">
+        <h2>Admin Dashboard</h2>
+        
+        <table>
+            <tr>
+                <th>Username</th>
+                <th>Name</th>
+                <th>Email</th>
+                <th>Reservations</th>
+            </tr>
+            {% for customer in customer_reservations %}
+            <tr>
+                <td>{{ customer.username }}</td>
+                <td>{{ customer.name }}</td>
+                <td>{{ customer.email }}</td>
+                <td>
+                    {% for reservation in customer.reservations %}
+                        <p>Reservation ID: {{ reservation.reservationId }}, Seats: {{ reservation.number_of_seats }}, Date: {{ reservation.reservation_date }}</p>
+                    {% else %}
+                        <p>No Reservations</p>
+                    {% endfor %}
+                </td>
+            </tr>
+            {% endfor %}
+        </table>
+    </div>
+</body>
+</html>
